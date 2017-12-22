@@ -1,4 +1,4 @@
-package com.ymy.mapper;
+package com.ymy.mapperTwo;
 
 import com.ymy.entity.province;
 import org.apache.ibatis.annotations.Select;

@@ -1,7 +1,7 @@
 package com.ymy.controller;
 
 import com.ymy.entity.province;
-import com.ymy.mapper.AreaMapper;
+import com.ymy.mapperTwo.AreaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
