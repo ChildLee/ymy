@@ -16,6 +16,6 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<Admin> getAdmin() {
-        return adminMapper.getAdmin();
+        return adminMapper.selectAll();
     }
 }

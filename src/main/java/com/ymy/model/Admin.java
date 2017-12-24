@@ -3,13 +3,13 @@ package com.ymy.model;
 import java.util.Date;
 
 public class Admin {
-    private Long id;
+    private Integer id;
 
     private String username;
 
     private String password;
 
-    private Long level;
+    private Integer level;
 
     private Date createTime;
 
@@ -17,11 +17,11 @@ public class Admin {
 
     private Byte status;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -41,11 +41,11 @@ public class Admin {
         this.password = password;
     }
 
-    public Long getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(Long level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
@@ -75,15 +75,18 @@ public class Admin {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Admin{");
-        sb.append("id=").append(id);
-        sb.append(", username='").append(username).append('\'');
-        sb.append(", password='").append(password).append('\'');
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", username=").append(username);
+        sb.append(", password=").append(password);
         sb.append(", level=").append(level);
         sb.append(", createTime=").append(createTime);
         sb.append(", lastLoginTime=").append(lastLoginTime);
         sb.append(", status=").append(status);
-        sb.append('}');
+        sb.append("]");
         return sb.toString();
     }
 }
