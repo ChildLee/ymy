@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <classPathEntry
+            location="D:\Services\Maven Repository\mysql\mysql-connector-java\8.0.8-dmr\mysql-connector-java-8.0.8-dmr.jar"/>
+
+    <context id="default" defaultModelType="flat" targetRuntime="MyBatis3Simple">
+
+        <!--修改标识符,默认为双引号-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!--这个插件添加toString()方法法到生成的模型类。-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
+        <commentGenerator>
+            <!--关闭注释,同时关闭注释时间-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://prosperous.mysql.rds.aliyuncs.com/ymy?useSSL=true"
+                        userId="root" password="">
+        </jdbcConnection>
+
+        <javaModelGenerator targetProject="src/main/java" targetPackage="model"/>
+        <sqlMapGenerator targetProject="src/main/java" targetPackage="mapper"/>
+        <javaClientGenerator targetProject="src/main/java" targetPackage="mapper" type="XMLMAPPER"/>
+
+        <!--catalog数据库名字-->
+        <!--delimitAllColumns为true时为所有列添加标识符,默认false是不添加-->
+        <table catalog="ymy" tableName="%"
+               enableInsert="true"
+               enableDeleteByPrimaryKey="true"
+               enableUpdateByPrimaryKey="true"
+               enableSelectByPrimaryKey="true"
+               delimitAllColumns="false">
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema； -->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+    </context>
+
+</generatorConfiguration>

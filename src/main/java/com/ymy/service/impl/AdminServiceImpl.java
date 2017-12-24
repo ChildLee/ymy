@@ -1,10 +1,12 @@
 package com.ymy.service.impl;
 
-import com.ymy.entity.Admin;
 import com.ymy.mapper.AdminMapper;
+import com.ymy.model.Admin;
 import com.ymy.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -13,7 +15,7 @@ public class AdminServiceImpl implements AdminService {
     private AdminMapper adminMapper;
 
     @Override
-    public Admin getAdmin() {
+    public List<Admin> getAdmin() {
         return adminMapper.getAdmin();
     }
 }

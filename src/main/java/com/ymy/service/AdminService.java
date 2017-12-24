@@ -1,7 +1,9 @@
 package com.ymy.service;
 
-import com.ymy.entity.Admin;
+import com.ymy.model.Admin;
+
+import java.util.List;
 
 public interface AdminService {
-    Admin getAdmin();
+    List<Admin> getAdmin();
 }
