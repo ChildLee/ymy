@@ -6,7 +6,7 @@
     <groupId>com</groupId>
     <artifactId>ymy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>ymy</name>
     <description>project for Spring Boot</description>
@@ -40,7 +40,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
-            <!--<scope>provided</scope>-->
+            <scope>provided</scope>
         </dependency>
         <!--编译和打包都不需要,运行测试需要-->
         <dependency>
