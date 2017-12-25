@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ymy.mapper.ItemSkuMapper">
+    <resultMap id="BaseResultMap" type="com.ymy.model.ItemSku">
+        <id column="sku_id" jdbcType="INTEGER" property="skuId"/>
+        <result column="item_id" jdbcType="INTEGER" property="itemId"/>
+        <result column="properties" jdbcType="VARCHAR" property="properties"/>
+        <result column="quantity" jdbcType="INTEGER" property="quantity"/>
+        <result column="raw_price" jdbcType="DECIMAL" property="rawPrice"/>
+        <result column="new_price" jdbcType="DECIMAL" property="newPrice"/>
+    </resultMap>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select `sku_id`, `item_id`, `properties`, `quantity`, `raw_price`, `new_price`
+        from item_sku
+    </select>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ymy.mapper.ShopPrinterMapper">
+    <resultMap id="BaseResultMap" type="com.ymy.model.ShopPrinter">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="shop_id" jdbcType="INTEGER" property="shopId"/>
+        <result column="client_id" jdbcType="VARCHAR" property="clientId"/>
+        <result column="token" jdbcType="VARCHAR" property="token"/>
+        <result column="machine_code" jdbcType="VARCHAR" property="machineCode"/>
+        <result column="machine_key" jdbcType="VARCHAR" property="machineKey"/>
+    </resultMap>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select `id`, `shop_id`, `client_id`, `token`, `machine_code`, `machine_key`
+        from shop_printer
+    </select>
+</mapper>

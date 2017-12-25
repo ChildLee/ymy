@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ymy.mapper.ItemsMapper">
+    <resultMap id="BaseResultMap" type="com.ymy.model.Items">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="desc" jdbcType="VARCHAR" property="desc"/>
+        <result column="image" jdbcType="VARCHAR" property="image"/>
+        <result column="quantity" jdbcType="INTEGER" property="quantity"/>
+        <result column="barcode" jdbcType="VARCHAR" property="barcode"/>
+        <result column="isSku" jdbcType="BIT" property="issku"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+    </resultMap>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select `id`, `category_id`, `name`, `desc`, `image`, `quantity`, `barcode`, `isSku`,
+        `status`
+        from items
+    </select>
+</mapper>
