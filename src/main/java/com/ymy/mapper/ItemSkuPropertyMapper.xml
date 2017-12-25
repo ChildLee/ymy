@@ -6,6 +6,27 @@
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="item_id" jdbcType="INTEGER" property="itemId"/>
     </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from item_sku_property
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ymy.model.ItemSkuProperty">
+        insert into item_sku_property (`id`, `name`, `item_id`
+        )
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{itemId,jdbcType=INTEGER}
+        )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.ymy.model.ItemSkuProperty">
+        update item_sku_property
+        set `name` = #{name,jdbcType=VARCHAR},
+        `item_id` = #{itemId,jdbcType=INTEGER}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select `id`, `name`, `item_id`
+        from item_sku_property
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select `id`, `name`, `item_id`
         from item_sku_property

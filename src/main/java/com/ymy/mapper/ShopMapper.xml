@@ -15,6 +15,43 @@
         <result column="send_range" jdbcType="INTEGER" property="sendRange"/>
         <result column="express_fee" jdbcType="DECIMAL" property="expressFee"/>
     </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from shop
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ymy.model.Shop">
+        insert into shop (`id`, `admin_id`, `name`,
+        `phone`, `address`, `longitude`,
+        `latitude`, `create_time`, `status`,
+        `send_price`, `send_range`, `express_fee`
+        )
+        values (#{id,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+        #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{longitude,jdbcType=DECIMAL},
+        #{latitude,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT},
+        #{sendPrice,jdbcType=DECIMAL}, #{sendRange,jdbcType=INTEGER}, #{expressFee,jdbcType=DECIMAL}
+        )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.ymy.model.Shop">
+        update shop
+        set `admin_id` = #{adminId,jdbcType=INTEGER},
+        `name` = #{name,jdbcType=VARCHAR},
+        `phone` = #{phone,jdbcType=VARCHAR},
+        `address` = #{address,jdbcType=VARCHAR},
+        `longitude` = #{longitude,jdbcType=DECIMAL},
+        `latitude` = #{latitude,jdbcType=DECIMAL},
+        `create_time` = #{createTime,jdbcType=TIMESTAMP},
+        `status` = #{status,jdbcType=TINYINT},
+        `send_price` = #{sendPrice,jdbcType=DECIMAL},
+        `send_range` = #{sendRange,jdbcType=INTEGER},
+        `express_fee` = #{expressFee,jdbcType=DECIMAL}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select `id`, `admin_id`, `name`, `phone`, `address`, `longitude`, `latitude`, `create_time`,
+        `status`, `send_price`, `send_range`, `express_fee`
+        from shop
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select `id`, `admin_id`, `name`, `phone`, `address`, `longitude`, `latitude`, `create_time`,
         `status`, `send_price`, `send_range`, `express_fee`

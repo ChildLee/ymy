@@ -12,6 +12,38 @@
         <result column="desc" jdbcType="VARCHAR" property="desc"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
     </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from shop_settled
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ymy.model.ShopSettled">
+        insert into shop_settled (`id`, `user_id`, `admin_id`,
+        `name`, `phone`, `expect_shop_name`,
+        `expect_username`, `desc`, `status`
+        )
+        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER},
+        #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{expectShopName,jdbcType=VARCHAR},
+        #{expectUsername,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}
+        )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.ymy.model.ShopSettled">
+        update shop_settled
+        set `user_id` = #{userId,jdbcType=INTEGER},
+        `admin_id` = #{adminId,jdbcType=INTEGER},
+        `name` = #{name,jdbcType=VARCHAR},
+        `phone` = #{phone,jdbcType=VARCHAR},
+        `expect_shop_name` = #{expectShopName,jdbcType=VARCHAR},
+        `expect_username` = #{expectUsername,jdbcType=VARCHAR},
+        `desc` = #{desc,jdbcType=VARCHAR},
+        `status` = #{status,jdbcType=TINYINT}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select `id`, `user_id`, `admin_id`, `name`, `phone`, `expect_shop_name`, `expect_username`,
+        `desc`, `status`
+        from shop_settled
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select `id`, `user_id`, `admin_id`, `name`, `phone`, `expect_shop_name`, `expect_username`,
         `desc`, `status`

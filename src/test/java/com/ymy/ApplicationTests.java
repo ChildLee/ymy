@@ -1,12 +1,16 @@
 package com.ymy;
 
+import com.ymy.mapper.AdminInfoMapper;
 import com.ymy.mapper.AdminMapper;
-import com.ymy.model.Admin;
+import com.ymy.model.AdminInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Iterator;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -15,15 +19,17 @@ public class ApplicationTests {
     @Autowired
     private AdminMapper adminMapper;
 
+    @Autowired
+    private AdminInfoMapper adminInfoMapper;
+
     @Test
     public void other() {
-        Admin admin = new Admin();
-        admin.setUsername("sa");
-        admin.setPassword("sa");
-        admin.setLevel(0);
-        admin.setStatus((byte) 0);
-        Integer a = adminMapper.insert(admin);
-        System.out.println(a);
+        List<AdminInfo> adminInfos = adminInfoMapper.selectAll();
+        Iterator<AdminInfo> iterator = adminInfos.iterator();
+        while (iterator.hasNext()) {
+            AdminInfo next = iterator.next();
+            System.out.println(next.toString());
+        }
     }
 
 }

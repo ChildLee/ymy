@@ -10,12 +10,33 @@
         <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
     </resultMap>
-
-    <insert id="insert">
-        insert into admin(username,password,level,create_time,last_login_time,status)
-        values (#{username},#{password},#{level},DEFAULT,DEFAULT,#{status})
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from admin
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ymy.model.Admin">
+        insert into admin (`id`, `username`, `password`,
+        `level`, `create_time`, `last_login_time`,
+        `status`)
+        values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+        #{level,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP},
+        #{status,jdbcType=TINYINT})
     </insert>
-
+    <update id="updateByPrimaryKey" parameterType="com.ymy.model.Admin">
+        update admin
+        set `username` = #{username,jdbcType=VARCHAR},
+        `password` = #{password,jdbcType=VARCHAR},
+        `level` = #{level,jdbcType=INTEGER},
+        `create_time` = #{createTime,jdbcType=TIMESTAMP},
+        `last_login_time` = #{lastLoginTime,jdbcType=TIMESTAMP},
+        `status` = #{status,jdbcType=TINYINT}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select `id`, `username`, `password`, `level`, `create_time`, `last_login_time`, `status`
+        from admin
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select `id`, `username`, `password`, `level`, `create_time`, `last_login_time`, `status`
         from admin

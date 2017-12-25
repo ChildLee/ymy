@@ -14,6 +14,40 @@
         <result column="longitude" jdbcType="DECIMAL" property="longitude"/>
         <result column="latitude" jdbcType="DECIMAL" property="latitude"/>
     </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from admin_info
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ymy.model.AdminInfo">
+        insert into admin_info (`id`, `admin_id`, `app_id`,
+        `app_secret`, `mch_id`, `mch_key`,
+        `name`, `phone`, `address`,
+        `longitude`, `latitude`)
+        values (#{id,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{appId,jdbcType=VARCHAR},
+        #{appSecret,jdbcType=VARCHAR}, #{mchId,jdbcType=VARCHAR}, #{mchKey,jdbcType=VARCHAR},
+        #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+        #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.ymy.model.AdminInfo">
+        update admin_info
+        set `admin_id` = #{adminId,jdbcType=INTEGER},
+        `app_id` = #{appId,jdbcType=VARCHAR},
+        `app_secret` = #{appSecret,jdbcType=VARCHAR},
+        `mch_id` = #{mchId,jdbcType=VARCHAR},
+        `mch_key` = #{mchKey,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
+        `phone` = #{phone,jdbcType=VARCHAR},
+        `address` = #{address,jdbcType=VARCHAR},
+        `longitude` = #{longitude,jdbcType=DECIMAL},
+        `latitude` = #{latitude,jdbcType=DECIMAL}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select `id`, `admin_id`, `app_id`, `app_secret`, `mch_id`, `mch_key`, `name`, `phone`,
+        `address`, `longitude`, `latitude`
+        from admin_info
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select `id`, `admin_id`, `app_id`, `app_secret`, `mch_id`, `mch_key`, `name`, `phone`,
         `address`, `longitude`, `latitude`

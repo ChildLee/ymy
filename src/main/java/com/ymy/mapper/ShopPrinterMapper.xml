@@ -9,6 +9,32 @@
         <result column="machine_code" jdbcType="VARCHAR" property="machineCode"/>
         <result column="machine_key" jdbcType="VARCHAR" property="machineKey"/>
     </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from shop_printer
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ymy.model.ShopPrinter">
+        insert into shop_printer (`id`, `shop_id`, `client_id`,
+        `token`, `machine_code`, `machine_key`
+        )
+        values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{clientId,jdbcType=VARCHAR},
+        #{token,jdbcType=VARCHAR}, #{machineCode,jdbcType=VARCHAR}, #{machineKey,jdbcType=VARCHAR}
+        )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.ymy.model.ShopPrinter">
+        update shop_printer
+        set `shop_id` = #{shopId,jdbcType=INTEGER},
+        `client_id` = #{clientId,jdbcType=VARCHAR},
+        `token` = #{token,jdbcType=VARCHAR},
+        `machine_code` = #{machineCode,jdbcType=VARCHAR},
+        `machine_key` = #{machineKey,jdbcType=VARCHAR}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select `id`, `shop_id`, `client_id`, `token`, `machine_code`, `machine_key`
+        from shop_printer
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select `id`, `shop_id`, `client_id`, `token`, `machine_code`, `machine_key`
         from shop_printer

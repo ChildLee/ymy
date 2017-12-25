@@ -8,6 +8,29 @@
         <result column="recommend" jdbcType="BIT" property="recommend"/>
         <result column="hot" jdbcType="BIT" property="hot"/>
     </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from items_promotions
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ymy.model.ItemsPromotions">
+        insert into items_promotions (`id`, `shop_id`, `items_id`,
+        `recommend`, `hot`)
+        values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{itemsId,jdbcType=INTEGER},
+        #{recommend,jdbcType=BIT}, #{hot,jdbcType=BIT})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.ymy.model.ItemsPromotions">
+        update items_promotions
+        set `shop_id` = #{shopId,jdbcType=INTEGER},
+        `items_id` = #{itemsId,jdbcType=INTEGER},
+        `recommend` = #{recommend,jdbcType=BIT},
+        `hot` = #{hot,jdbcType=BIT}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select `id`, `shop_id`, `items_id`, `recommend`, `hot`
+        from items_promotions
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select `id`, `shop_id`, `items_id`, `recommend`, `hot`
         from items_promotions

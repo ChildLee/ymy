@@ -12,6 +12,36 @@
         <result column="isSku" jdbcType="BIT" property="issku"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
     </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from items
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ymy.model.Items">
+        insert into items (`id`, `category_id`, `name`,
+        `desc`, `image`, `quantity`,
+        `barcode`, `isSku`, `status`)
+        values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+        #{desc,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER},
+        #{barcode,jdbcType=VARCHAR}, #{issku,jdbcType=BIT}, #{status,jdbcType=TINYINT})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.ymy.model.Items">
+        update items
+        set `category_id` = #{categoryId,jdbcType=INTEGER},
+        `name` = #{name,jdbcType=VARCHAR},
+        `desc` = #{desc,jdbcType=VARCHAR},
+        `image` = #{image,jdbcType=VARCHAR},
+        `quantity` = #{quantity,jdbcType=INTEGER},
+        `barcode` = #{barcode,jdbcType=VARCHAR},
+        `isSku` = #{issku,jdbcType=BIT},
+        `status` = #{status,jdbcType=TINYINT}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select `id`, `category_id`, `name`, `desc`, `image`, `quantity`, `barcode`, `isSku`,
+        `status`
+        from items
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select `id`, `category_id`, `name`, `desc`, `image`, `quantity`, `barcode`, `isSku`,
         `status`

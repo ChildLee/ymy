@@ -9,6 +9,32 @@
         <result column="raw_price" jdbcType="DECIMAL" property="rawPrice"/>
         <result column="new_price" jdbcType="DECIMAL" property="newPrice"/>
     </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from item_sku
+        where `sku_id` = #{skuId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ymy.model.ItemSku">
+        insert into item_sku (`sku_id`, `item_id`, `properties`,
+        `quantity`, `raw_price`, `new_price`
+        )
+        values (#{skuId,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}, #{properties,jdbcType=VARCHAR},
+        #{quantity,jdbcType=INTEGER}, #{rawPrice,jdbcType=DECIMAL}, #{newPrice,jdbcType=DECIMAL}
+        )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.ymy.model.ItemSku">
+        update item_sku
+        set `item_id` = #{itemId,jdbcType=INTEGER},
+        `properties` = #{properties,jdbcType=VARCHAR},
+        `quantity` = #{quantity,jdbcType=INTEGER},
+        `raw_price` = #{rawPrice,jdbcType=DECIMAL},
+        `new_price` = #{newPrice,jdbcType=DECIMAL}
+        where `sku_id` = #{skuId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select `sku_id`, `item_id`, `properties`, `quantity`, `raw_price`, `new_price`
+        from item_sku
+        where `sku_id` = #{skuId,jdbcType=INTEGER}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select `sku_id`, `item_id`, `properties`, `quantity`, `raw_price`, `new_price`
         from item_sku

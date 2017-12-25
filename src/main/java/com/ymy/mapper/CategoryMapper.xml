@@ -8,6 +8,29 @@
         <result column="level" jdbcType="INTEGER" property="level"/>
         <result column="shop_id" jdbcType="INTEGER" property="shopId"/>
     </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from category
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ymy.model.Category">
+        insert into category (`id`, `name`, `image`,
+        `level`, `shop_id`)
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR},
+        #{level,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.ymy.model.Category">
+        update category
+        set `name` = #{name,jdbcType=VARCHAR},
+        `image` = #{image,jdbcType=VARCHAR},
+        `level` = #{level,jdbcType=INTEGER},
+        `shop_id` = #{shopId,jdbcType=INTEGER}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select `id`, `name`, `image`, `level`, `shop_id`
+        from category
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select `id`, `name`, `image`, `level`, `shop_id`
         from category

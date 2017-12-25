@@ -11,6 +11,35 @@
         <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
         <result column="default_address" jdbcType="INTEGER" property="defaultAddress"/>
     </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ymy.model.User">
+        insert into user (`id`, `admin_id`, `open_id`,
+        `name`, `image`, `create_time`,
+        `last_login_time`, `default_address`)
+        values (#{id,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR},
+        #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{lastLoginTime,jdbcType=TIMESTAMP}, #{defaultAddress,jdbcType=INTEGER})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.ymy.model.User">
+        update user
+        set `admin_id` = #{adminId,jdbcType=INTEGER},
+        `open_id` = #{openId,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
+        `image` = #{image,jdbcType=VARCHAR},
+        `create_time` = #{createTime,jdbcType=TIMESTAMP},
+        `last_login_time` = #{lastLoginTime,jdbcType=TIMESTAMP},
+        `default_address` = #{defaultAddress,jdbcType=INTEGER}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select `id`, `admin_id`, `open_id`, `name`, `image`, `create_time`, `last_login_time`,
+        `default_address`
+        from user
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select `id`, `admin_id`, `open_id`, `name`, `image`, `create_time`, `last_login_time`,
         `default_address`

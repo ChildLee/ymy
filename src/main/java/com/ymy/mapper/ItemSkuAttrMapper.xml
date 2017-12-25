@@ -8,6 +8,29 @@
         <result column="v_id" jdbcType="INTEGER" property="vId"/>
         <result column="item_sku_id" jdbcType="INTEGER" property="itemSkuId"/>
     </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from item_sku_attr
+        where `item_attr_id` = #{itemAttrId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ymy.model.ItemSkuAttr">
+        insert into item_sku_attr (`item_attr_id`, `item_id`, `p_id`,
+        `v_id`, `item_sku_id`)
+        values (#{itemAttrId,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER},
+        #{vId,jdbcType=INTEGER}, #{itemSkuId,jdbcType=INTEGER})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.ymy.model.ItemSkuAttr">
+        update item_sku_attr
+        set `item_id` = #{itemId,jdbcType=INTEGER},
+        `p_id` = #{pId,jdbcType=INTEGER},
+        `v_id` = #{vId,jdbcType=INTEGER},
+        `item_sku_id` = #{itemSkuId,jdbcType=INTEGER}
+        where `item_attr_id` = #{itemAttrId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select `item_attr_id`, `item_id`, `p_id`, `v_id`, `item_sku_id`
+        from item_sku_attr
+        where `item_attr_id` = #{itemAttrId,jdbcType=INTEGER}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select `item_attr_id`, `item_id`, `p_id`, `v_id`, `item_sku_id`
         from item_sku_attr
