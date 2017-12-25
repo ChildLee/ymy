@@ -10,6 +10,12 @@
         <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
     </resultMap>
+
+    <insert id="insert">
+        insert into admin(username,password,level,create_time,last_login_time,status)
+        values (#{username},#{password},#{level},DEFAULT,DEFAULT,#{status})
+    </insert>
+
     <select id="selectAll" resultMap="BaseResultMap">
         select `id`, `username`, `password`, `level`, `create_time`, `last_login_time`, `status`
         from admin
