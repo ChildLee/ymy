@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * 省市区县\邮编查询
+ */
 @Repository
 public interface AreaMapper {
     /**
