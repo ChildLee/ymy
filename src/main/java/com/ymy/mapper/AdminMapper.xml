@@ -9,36 +9,53 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
+        <association property="adminInfo" javaType="com.ymy.model.AdminInfo">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+            <result column="admin_id" jdbcType="INTEGER" property="adminId"/>
+            <result column="app_id" jdbcType="VARCHAR" property="appId"/>
+            <result column="app_secret" jdbcType="VARCHAR" property="appSecret"/>
+            <result column="mch_id" jdbcType="VARCHAR" property="mchId"/>
+            <result column="mch_key" jdbcType="VARCHAR" property="mchKey"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+            <result column="phone" jdbcType="VARCHAR" property="phone"/>
+            <result column="address" jdbcType="VARCHAR" property="address"/>
+            <result column="longitude" jdbcType="DECIMAL" property="longitude"/>
+            <result column="latitude" jdbcType="DECIMAL" property="latitude"/>
+        </association>
     </resultMap>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from admin
         where `id` = #{id,jdbcType=INTEGER}
     </delete>
+
     <insert id="insert" parameterType="com.ymy.model.Admin">
-        insert into admin (`id`, `username`, `password`,
-        `level`, `create_time`, `last_login_time`,
-        `status`)
-        values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-        #{level,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP},
-        #{status,jdbcType=TINYINT})
+        insert into admin ( `username`, `password`, `level`, `create_time`, `last_login_time`,  `status`)
+        values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{level,jdbcType=INTEGER}, DEFAULT, DEFAULT, #{status,jdbcType=TINYINT})
     </insert>
+
     <update id="updateByPrimaryKey" parameterType="com.ymy.model.Admin">
         update admin
-        set `username` = #{username,jdbcType=VARCHAR},
-        `password` = #{password,jdbcType=VARCHAR},
-        `level` = #{level,jdbcType=INTEGER},
-        `create_time` = #{createTime,jdbcType=TIMESTAMP},
-        `last_login_time` = #{lastLoginTime,jdbcType=TIMESTAMP},
-        `status` = #{status,jdbcType=TINYINT}
+        set `username` = #{username,jdbcType=VARCHAR},`password` = #{password,jdbcType=VARCHAR},
+            `level` = #{level,jdbcType=INTEGER},`last_login_time` = DEFAULT,`status` = #{status,jdbcType=TINYINT}
         where `id` = #{id,jdbcType=INTEGER}
     </update>
+
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select `id`, `username`, `password`, `level`, `create_time`, `last_login_time`, `status`
         from admin
         where `id` = #{id,jdbcType=INTEGER}
     </select>
+
     <select id="selectAll" resultMap="BaseResultMap">
         select `id`, `username`, `password`, `level`, `create_time`, `last_login_time`, `status`
         from admin
+    </select>
+
+    <select id="login" resultType="Integer">
+        SELECT `id`
+        FROM admin
+        WHERE username='sa' AND password='sa'
     </select>
 </mapper>

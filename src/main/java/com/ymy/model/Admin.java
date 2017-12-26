@@ -17,6 +17,8 @@ public class Admin {
 
     private Byte status;
 
+    private AdminInfo adminInfo;
+
     public Integer getId() {
         return id;
     }
@@ -73,6 +75,14 @@ public class Admin {
         this.status = status;
     }
 
+    public AdminInfo getAdminInfo() {
+        return adminInfo;
+    }
+
+    public void setAdminInfo(AdminInfo adminInfo) {
+        this.adminInfo = adminInfo;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Admin{");
@@ -83,6 +93,7 @@ public class Admin {
         sb.append(", createTime=").append(createTime);
         sb.append(", lastLoginTime=").append(lastLoginTime);
         sb.append(", status=").append(status);
+        sb.append(", adminInfo=").append(adminInfo);
         sb.append('}');
         return sb.toString();
     }

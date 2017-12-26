@@ -2,6 +2,7 @@ package com.ymy;
 
 import com.ymy.mapper.AdminInfoMapper;
 import com.ymy.mapper.AdminMapper;
+import com.ymy.model.Admin;
 import com.ymy.model.AdminInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,8 +35,11 @@ public class ApplicationTests {
 
     @Test
     public void Te() {
-        String a = "";
-        System.out.println("".equals(a));
+        Admin admin = new Admin();
+        admin.setUsername("sa");
+        admin.setPassword("sa");
+        Integer login = adminMapper.login(admin);
+        System.out.println(login);
     }
 
 }

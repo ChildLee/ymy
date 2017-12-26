@@ -16,4 +16,11 @@ public interface AdminMapper {
     List<Admin> selectAll();
 
     int updateByPrimaryKey(Admin record);
+
+    /**
+     * 用户登录
+     *
+     * @return 用户信息
+     */
+    Integer login(Admin admin);
 }

@@ -1,14 +1,22 @@
 package com.ymy.util;
 
+/**
+ * 封装返回的结果对象
+ *
+ * @param <T> 包装的数据
+ */
 public class Result<T> {
+
     /**
      * 返回错误码
      */
     private Integer code;
+
     /**
      * 返回提示信息
      */
     private String msg;
+
     /**
      * 具体内容
      */
