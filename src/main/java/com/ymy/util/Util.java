@@ -31,7 +31,7 @@ public final class Util {
     }
 
 
-//</editor-fold>
+    //</editor-fold>
 
     //<editor-fold> 转换工具类
 
@@ -72,7 +72,7 @@ public final class Util {
         }
         return sb.substring(1);
     }
-//</editor-fold>
+    //</editor-fold>
 
     //<editor-fold> 时间工具类
 

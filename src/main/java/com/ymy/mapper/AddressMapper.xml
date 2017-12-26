@@ -11,34 +11,34 @@
         <result column="zip_code" jdbcType="INTEGER" property="zipCode"/>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from address
-    where `id` = #{id,jdbcType=INTEGER}
-  </delete>
+        delete from address
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="com.ymy.model.Address">
-    insert into address (`id`, `user_id`, `name`, 
-      `phone`, `location`, `address`, 
-      `zip_code`)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{zipCode,jdbcType=INTEGER})
-  </insert>
+        insert into address (`id`, `user_id`, `name`,
+        `phone`, `location`, `address`,
+        `zip_code`)
+        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+        #{phone,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+        #{zipCode,jdbcType=INTEGER})
+    </insert>
     <update id="updateByPrimaryKey" parameterType="com.ymy.model.Address">
-    update address
-    set `user_id` = #{userId,jdbcType=INTEGER},
-      `name` = #{name,jdbcType=VARCHAR},
-      `phone` = #{phone,jdbcType=VARCHAR},
-      `location` = #{location,jdbcType=VARCHAR},
-      `address` = #{address,jdbcType=VARCHAR},
-      `zip_code` = #{zipCode,jdbcType=INTEGER}
-    where `id` = #{id,jdbcType=INTEGER}
-  </update>
+        update address
+        set `user_id` = #{userId,jdbcType=INTEGER},
+        `name` = #{name,jdbcType=VARCHAR},
+        `phone` = #{phone,jdbcType=VARCHAR},
+        `location` = #{location,jdbcType=VARCHAR},
+        `address` = #{address,jdbcType=VARCHAR},
+        `zip_code` = #{zipCode,jdbcType=INTEGER}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select `id`, `user_id`, `name`, `phone`, `location`, `address`, `zip_code`
-    from address
-    where `id` = #{id,jdbcType=INTEGER}
-  </select>
+        select `id`, `user_id`, `name`, `phone`, `location`, `address`, `zip_code`
+        from address
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
-    select `id`, `user_id`, `name`, `phone`, `location`, `address`, `zip_code`
-    from address
-  </select>
+        select `id`, `user_id`, `name`, `phone`, `location`, `address`, `zip_code`
+        from address
+    </select>
 </mapper>

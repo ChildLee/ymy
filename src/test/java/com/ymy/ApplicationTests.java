@@ -32,4 +32,10 @@ public class ApplicationTests {
         }
     }
 
+    @Test
+    public void Te() {
+        String a = "";
+        System.out.println("".equals(a));
+    }
+
 }

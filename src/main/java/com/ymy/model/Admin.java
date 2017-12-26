@@ -75,18 +75,15 @@ public class Admin {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", username=").append(username);
-        sb.append(", password=").append(password);
+        final StringBuilder sb = new StringBuilder("Admin{");
+        sb.append("id=").append(id);
+        sb.append(", username='").append(username).append('\'');
+        sb.append(", password='").append(password).append('\'');
         sb.append(", level=").append(level);
         sb.append(", createTime=").append(createTime);
         sb.append(", lastLoginTime=").append(lastLoginTime);
         sb.append(", status=").append(status);
-        sb.append("]");
+        sb.append('}');
         return sb.toString();
     }
 }
