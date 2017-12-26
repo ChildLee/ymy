@@ -1,14 +1,23 @@
 package com.ymy.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel
 public class AreaAreas {
+    @ApiModelProperty("县行政区划代码")
     private Integer code;
 
+    @ApiModelProperty("县名")
     private String name;
 
+    @ApiModelProperty("邮编")
     private Integer zipCode;
 
+    @ApiModelProperty("区号")
     private Integer areaCode;
 
+    @ApiModelProperty("市/区行政区划代码")
     private Integer parentCode;
 
     public Integer getCode() {

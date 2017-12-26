@@ -1,8 +1,14 @@
 package com.ymy.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel
 public class AreaProvinces {
+    @ApiModelProperty("省级行政区划代码")
     private Integer code;
 
+    @ApiModelProperty("省份名")
     private String name;
 
     public Integer getCode() {
@@ -23,13 +29,10 @@ public class AreaProvinces {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", code=").append(code);
-        sb.append(", name=").append(name);
-        sb.append("]");
+        final StringBuilder sb = new StringBuilder("AreaProvinces{");
+        sb.append("code=").append(code);
+        sb.append(", name='").append(name).append('\'');
+        sb.append('}');
         return sb.toString();
     }
 }

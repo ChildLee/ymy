@@ -30,15 +30,15 @@
     </delete>
 
     <insert id="insert" parameterType="com.ymy.model.Admin">
-        insert into admin ( `username`, `password`, `level`, `create_time`, `last_login_time`,  `status`)
+        insert into admin ( `username`, `password`, `level`, `create_time`, `last_login_time`, `status`)
         values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-                #{level,jdbcType=INTEGER}, DEFAULT, DEFAULT, #{status,jdbcType=TINYINT})
+        #{level,jdbcType=INTEGER}, DEFAULT, DEFAULT, #{status,jdbcType=TINYINT})
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.ymy.model.Admin">
         update admin
         set `username` = #{username,jdbcType=VARCHAR},`password` = #{password,jdbcType=VARCHAR},
-            `level` = #{level,jdbcType=INTEGER},`last_login_time` = DEFAULT,`status` = #{status,jdbcType=TINYINT}
+        `level` = #{level,jdbcType=INTEGER},`last_login_time` = DEFAULT,`status` = #{status,jdbcType=TINYINT}
         where `id` = #{id,jdbcType=INTEGER}
     </update>
 
