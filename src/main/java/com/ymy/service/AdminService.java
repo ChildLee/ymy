@@ -5,5 +5,8 @@ import com.ymy.model.Admin;
 import java.util.List;
 
 public interface AdminService {
-    List<Admin> getAdmin();
+
+    int updateAdmin(Admin record);
+
+    List<Admin> selectAdminAll();
 }

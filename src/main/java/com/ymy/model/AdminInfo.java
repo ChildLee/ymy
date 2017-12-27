@@ -3,6 +3,7 @@ package com.ymy.model;
 import java.math.BigDecimal;
 
 public class AdminInfo {
+
     private Integer id;
 
     private Integer adminId;
@@ -24,6 +25,8 @@ public class AdminInfo {
     private BigDecimal longitude;
 
     private BigDecimal latitude;
+
+    private Admin admin;
 
     public Integer getId() {
         return id;
@@ -113,24 +116,30 @@ public class AdminInfo {
         this.latitude = latitude;
     }
 
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
+        final StringBuilder sb = new StringBuilder("AdminInfo{");
+        sb.append("id=").append(id);
         sb.append(", adminId=").append(adminId);
-        sb.append(", appId=").append(appId);
-        sb.append(", appSecret=").append(appSecret);
-        sb.append(", mchId=").append(mchId);
-        sb.append(", mchKey=").append(mchKey);
-        sb.append(", name=").append(name);
-        sb.append(", phone=").append(phone);
-        sb.append(", address=").append(address);
+        sb.append(", appId='").append(appId).append('\'');
+        sb.append(", appSecret='").append(appSecret).append('\'');
+        sb.append(", mchId='").append(mchId).append('\'');
+        sb.append(", mchKey='").append(mchKey).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", phone='").append(phone).append('\'');
+        sb.append(", address='").append(address).append('\'');
         sb.append(", longitude=").append(longitude);
         sb.append(", latitude=").append(latitude);
-        sb.append("]");
+        sb.append(", admin=").append(admin);
+        sb.append('}');
         return sb.toString();
     }
 }

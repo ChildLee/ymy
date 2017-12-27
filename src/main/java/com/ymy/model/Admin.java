@@ -1,8 +1,12 @@
 package com.ymy.model;
 
+import io.swagger.annotations.ApiModelProperty;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Admin {
+
     private Integer id;
 
     private String username;
@@ -11,13 +15,14 @@ public class Admin {
 
     private Integer level;
 
+    @ApiModelProperty(hidden = true)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastLoginTime;
 
     private Byte status;
-
-    private AdminInfo adminInfo;
 
     public Integer getId() {
         return id;
@@ -75,14 +80,6 @@ public class Admin {
         this.status = status;
     }
 
-    public AdminInfo getAdminInfo() {
-        return adminInfo;
-    }
-
-    public void setAdminInfo(AdminInfo adminInfo) {
-        this.adminInfo = adminInfo;
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Admin{");
@@ -93,7 +90,6 @@ public class Admin {
         sb.append(", createTime=").append(createTime);
         sb.append(", lastLoginTime=").append(lastLoginTime);
         sb.append(", status=").append(status);
-        sb.append(", adminInfo=").append(adminInfo);
         sb.append('}');
         return sb.toString();
     }

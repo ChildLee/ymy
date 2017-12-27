@@ -9,15 +9,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
 @Transactional
+@Service
 public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private AdminMapper adminMapper;
 
     @Override
-    public List<Admin> getAdmin() {
-        return adminMapper.selectAll();
+    public int updateAdmin(Admin admin) {
+        return adminMapper.updateAdmin(admin);
+    }
+
+    @Override
+    public List<Admin> selectAdminAll() {
+        return adminMapper.selectAdminAll();
     }
 }

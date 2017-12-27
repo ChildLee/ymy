@@ -4,11 +4,11 @@ import com.ymy.model.AreaAreas;
 import com.ymy.model.AreaCities;
 import com.ymy.model.AreaProvinces;
 import com.ymy.model.AreaStreets;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 public interface AreaService {
     /**
      * @return 查询所有省份
@@ -23,9 +23,6 @@ public interface AreaService {
     /**
      * @return 根据市级行政区划代码查询对应区/县和邮编
      */
-    @Results({
-            @Result(property = "zipCode", column = "zip_code")
-    })
     List<AreaAreas> getAreas(Integer code);
 
     /**

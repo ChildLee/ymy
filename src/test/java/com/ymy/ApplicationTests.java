@@ -38,7 +38,7 @@ public class ApplicationTests {
         Admin admin = new Admin();
         admin.setUsername("sa");
         admin.setPassword("sa");
-        Integer login = adminMapper.login(admin);
+        int login = adminMapper.login(admin);
         System.out.println(login);
     }
 

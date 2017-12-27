@@ -9,19 +9,6 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
-        <association property="adminInfo" javaType="com.ymy.model.AdminInfo">
-            <id column="id" jdbcType="INTEGER" property="id"/>
-            <result column="admin_id" jdbcType="INTEGER" property="adminId"/>
-            <result column="app_id" jdbcType="VARCHAR" property="appId"/>
-            <result column="app_secret" jdbcType="VARCHAR" property="appSecret"/>
-            <result column="mch_id" jdbcType="VARCHAR" property="mchId"/>
-            <result column="mch_key" jdbcType="VARCHAR" property="mchKey"/>
-            <result column="name" jdbcType="VARCHAR" property="name"/>
-            <result column="phone" jdbcType="VARCHAR" property="phone"/>
-            <result column="address" jdbcType="VARCHAR" property="address"/>
-            <result column="longitude" jdbcType="DECIMAL" property="longitude"/>
-            <result column="latitude" jdbcType="DECIMAL" property="latitude"/>
-        </association>
     </resultMap>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -35,10 +22,14 @@
         #{level,jdbcType=INTEGER}, DEFAULT, DEFAULT, #{status,jdbcType=TINYINT})
     </insert>
 
-    <update id="updateByPrimaryKey" parameterType="com.ymy.model.Admin">
+    <update id="updateAdmin" parameterType="com.ymy.model.Admin">
         update admin
-        set `username` = #{username,jdbcType=VARCHAR},`password` = #{password,jdbcType=VARCHAR},
-        `level` = #{level,jdbcType=INTEGER},`last_login_time` = DEFAULT,`status` = #{status,jdbcType=TINYINT}
+        set
+        <if test="username!=null">`username` = #{username,jdbcType=VARCHAR},</if>
+        <if test="password!=null">`password` = #{password,jdbcType=VARCHAR},</if>
+        <if test="level!=null">`level` = #{level,jdbcType=INTEGER},</if>
+        <if test="status!=null">`status` = #{status,jdbcType=TINYINT},</if>
+        `last_login_time` = DEFAULT
         where `id` = #{id,jdbcType=INTEGER}
     </update>
 
@@ -48,7 +39,7 @@
         where `id` = #{id,jdbcType=INTEGER}
     </select>
 
-    <select id="selectAll" resultMap="BaseResultMap">
+    <select id="selectAdminAll" resultMap="BaseResultMap">
         select `id`, `username`, `password`, `level`, `create_time`, `last_login_time`, `status`
         from admin
     </select>

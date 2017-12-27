@@ -13,14 +13,14 @@ public interface AdminMapper {
 
     Admin selectByPrimaryKey(Integer id);
 
-    List<Admin> selectAll();
+    List<Admin> selectAdminAll();
 
-    int updateByPrimaryKey(Admin record);
+    int updateAdmin(Admin admin);
 
     /**
      * 用户登录
      *
      * @return 用户信息
      */
-    Integer login(Admin admin);
+    int login(Admin admin);
 }
