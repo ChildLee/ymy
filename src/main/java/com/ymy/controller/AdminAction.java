@@ -32,12 +32,11 @@ public class AdminAction {
             @ApiImplicitParam(name = "password", value = "密码", paramType = "query", dataType = "string"),
             @ApiImplicitParam(name = "level", value = "管理员级别", paramType = "query", dataType = "int"),
             @ApiImplicitParam(name = "lastLoginTime", value = "最后登录时间", paramType = "query", dataType = "date"),
-            @ApiImplicitParam(name = "status", value = "管理员账号状态", paramType = "query", dataType = "int"),
+            @ApiImplicitParam(name = "status", value = "管理员账号状态", paramType = "query", dataType = "int", defaultValue = "1"),
     })
     @PostMapping("updateAdmin")
     public Result updateAdmin(Admin admin) {
         System.out.println(admin);
         return ResultUtil.success(adminService.updateAdmin(admin));
     }
-
 }
