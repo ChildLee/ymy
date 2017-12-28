@@ -24,12 +24,18 @@ public final class Util {
      * @return 空值为true, 否则false
      */
     public static Boolean isNull(String value) {
-        if (null == value || value.isEmpty()) {
+        if (null == value || value.trim().isEmpty()) {
             return true;
         }
         return false;
     }
 
+    public static Boolean paramIsNull(String value) {
+        if (null == value || value.trim().isEmpty() || "undefined".equals(value) || "null".equals(value)) {
+            return true;
+        }
+        return false;
+    }
 
     //</editor-fold>
 

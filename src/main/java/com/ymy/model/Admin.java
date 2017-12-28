@@ -19,8 +19,9 @@ public class Admin {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastLoginTime;
+
+    private String token;
 
     private Byte status;
 
@@ -72,6 +73,14 @@ public class Admin {
         this.lastLoginTime = lastLoginTime;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public Byte getStatus() {
         return status;
     }
@@ -89,6 +98,7 @@ public class Admin {
         sb.append(", level=").append(level);
         sb.append(", createTime=").append(createTime);
         sb.append(", lastLoginTime=").append(lastLoginTime);
+        sb.append(", token='").append(token).append('\'');
         sb.append(", status=").append(status);
         sb.append('}');
         return sb.toString();

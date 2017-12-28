@@ -4,6 +4,7 @@ import com.ymy.model.Admin;
 import com.ymy.service.AdminService;
 import com.ymy.util.Result;
 import com.ymy.util.ResultUtil;
+import com.ymy.util.Util;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -20,9 +21,14 @@ public class AdminAction {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("selectAdminAll")
-    public Result selectAdminAll() {
-        return ResultUtil.success(adminService.selectAdminAll());
+    @PostMapping("addAdmin")
+    public int addAdmin(Admin admin) {
+        return adminService.addAdmin(admin);
+    }
+
+    @PostMapping("deleteAdmin")
+    public int deleteAdmin(Integer id) {
+        return adminService.deleteAdmin(id);
     }
 
     @ApiOperation(value = "修改管理员")
@@ -31,12 +37,35 @@ public class AdminAction {
             @ApiImplicitParam(name = "username", value = "用户名", paramType = "query", dataType = "string"),
             @ApiImplicitParam(name = "password", value = "密码", paramType = "query", dataType = "string"),
             @ApiImplicitParam(name = "level", value = "管理员级别", paramType = "query", dataType = "int"),
-            @ApiImplicitParam(name = "lastLoginTime", value = "最后登录时间", paramType = "query", dataType = "date"),
-            @ApiImplicitParam(name = "status", value = "管理员账号状态", paramType = "query", dataType = "int", defaultValue = "1"),
+            @ApiImplicitParam(name = "status", value = "管理员账号状态", paramType = "query", dataType = "int"),
     })
     @PostMapping("updateAdmin")
     public Result updateAdmin(Admin admin) {
         System.out.println(admin);
         return ResultUtil.success(adminService.updateAdmin(admin));
+    }
+
+    @GetMapping("selectAdmin")
+    public Admin selectAdmin(Integer id) {
+        return adminService.selectAdmin(id);
+    }
+
+    @GetMapping("selectAdminAll")
+    public Result selectAdminAll() {
+        return ResultUtil.success(adminService.selectAdminAll());
+    }
+
+    @PostMapping("login")
+    public Result login(String username, String password) {
+        if (Util.paramIsNull(username) || Util.paramIsNull(password)) return ResultUtil.error(1001);
+        Admin admin = new Admin();
+        admin.setUsername(username.trim());
+        admin.setPassword(password.trim());
+        return ResultUtil.success(adminService.login(admin));
+    }
+
+    @GetMapping("selectToken")
+    public String selectToken(Integer id) {
+        return adminService.selectToken(id);
     }
 }

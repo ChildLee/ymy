@@ -36,14 +36,15 @@ public class ApplicationTests {
     @Test
     public void Te() {
         Admin admin = new Admin();
-        admin.setUsername("sa");
-        admin.setPassword("sa");
+        admin.setUsername("31");
+        admin.setPassword("2222");
         int login = adminMapper.login(admin);
         System.out.println(login);
     }
 
     @Test
     public void Da() {
-
+        String a = "";
+        System.out.println(a.trim().isEmpty());
     }
 }

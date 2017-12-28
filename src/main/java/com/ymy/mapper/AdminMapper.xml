@@ -8,45 +8,47 @@
         <result column="level" jdbcType="INTEGER" property="level"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+        <result column="token" jdbcType="VARCHAR" property="token"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
     </resultMap>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete from admin
-        where `id` = #{id,jdbcType=INTEGER}
-    </delete>
-
-    <insert id="insert" parameterType="com.ymy.model.Admin">
-        insert into admin ( `username`, `password`, `level`, `create_time`, `last_login_time`, `status`)
-        values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-        #{level,jdbcType=INTEGER}, DEFAULT, DEFAULT, #{status,jdbcType=TINYINT})
+    <insert id="addAdmin" parameterType="com.ymy.model.Admin">
+        INSERT INTO admin
+        VALUES
+            (DEFAULT, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
+             DEFAULT, DEFAULT, DEFAULT, #{status,jdbcType=TINYINT})
     </insert>
 
+    <delete id="deleteAdmin" parameterType="java.lang.Integer">
+        DELETE FROM admin
+        WHERE `id` = #{id,jdbcType=INTEGER}
+    </delete>
+
     <update id="updateAdmin" parameterType="com.ymy.model.Admin">
-        update admin
-        set
+        UPDATE admin
+        SET
         <if test="username!=null">`username` = #{username,jdbcType=VARCHAR},</if>
         <if test="password!=null">`password` = #{password,jdbcType=VARCHAR},</if>
         <if test="level!=null">`level` = #{level,jdbcType=INTEGER},</if>
+        <if test="lastLoginTime!=null">`last_login_time` = #{lastLoginTime,jdbcType=TIMESTAMP},</if>
         <if test="status!=null">`status` = #{status,jdbcType=TINYINT},</if>
-        `last_login_time` = DEFAULT
-        where `id` = #{id,jdbcType=INTEGER}
+        `id` = #{id,jdbcType=INTEGER}
+        WHERE `id` = #{id,jdbcType=INTEGER}
     </update>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select `id`, `username`, `password`, `level`, `create_time`, `last_login_time`, `status`
-        from admin
-        where `id` = #{id,jdbcType=INTEGER}
+    <select id="selectAdmin" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM admin WHERE `id` = #{id,jdbcType=INTEGER}
     </select>
 
     <select id="selectAdminAll" resultMap="BaseResultMap">
-        select `id`, `username`, `password`, `level`, `create_time`, `last_login_time`, `status`
-        from admin
+        select * FROM admin
     </select>
 
     <select id="login" resultType="Integer">
-        SELECT `id`
-        FROM admin
-        WHERE username='sa' AND password='sa'
+        SELECT `id` FROM admin WHERE username=#{username,jdbcType=VARCHAR} AND password=#{password,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectToken" resultType="Integer">
+        SELECT `token` FROM admin WHERE `id` = #{id,jdbcType=INTEGER}
     </select>
 </mapper>
