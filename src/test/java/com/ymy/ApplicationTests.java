@@ -44,7 +44,6 @@ public class ApplicationTests {
 
     @Test
     public void Da() {
-        String a = "";
-        System.out.println(a.trim().isEmpty());
+
     }
 }

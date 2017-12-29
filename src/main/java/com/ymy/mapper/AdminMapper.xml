@@ -15,8 +15,8 @@
     <insert id="addAdmin" parameterType="com.ymy.model.Admin">
         INSERT INTO admin
         VALUES
-            (DEFAULT, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
-             DEFAULT, DEFAULT, DEFAULT, #{status,jdbcType=TINYINT})
+        (DEFAULT, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
+        DEFAULT, DEFAULT, DEFAULT, #{status,jdbcType=TINYINT})
     </insert>
 
     <delete id="deleteAdmin" parameterType="java.lang.Integer">
