@@ -3,6 +3,7 @@ package com.ymy;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.impl.PublicClaims;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ymy.mapper.AdminInfoMapper;
@@ -16,10 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -53,13 +51,13 @@ public class ApplicationTests {
     @Test
     public void createToken() throws UnsupportedEncodingException {
         Map<String, Object> header = new HashMap<>();
-        header.put("typ", "JWT");
-        header.put("alg", "HS256");
+        header.put(PublicClaims.TYPE, "JWT");
+        header.put(PublicClaims.ALGORITHM, "HS256");
         String token = JWT.create()
-                .withHeader(header)//header
-                .withClaim("name", "zwz")//payload
+                .withHeader(header)
+                .withClaim("name", "zwz")
                 .withClaim("age", "18")
-                .sign(Algorithm.HMAC256("secret"));//加密
+                .sign(Algorithm.HMAC256("secret"));
         System.out.println(token);
     }
 
@@ -69,18 +67,20 @@ public class ApplicationTests {
                 .build();
         DecodedJWT jwt = verifier.verify("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiend6IiwiYWdlIjoiMTgifQ.UQmqAUhUrpDVV2ST7mZKyLTomVfg7sYkEjmdDI5XF8Q");
         Map<String, Claim> claims = jwt.getClaims();
-        System.out.println(claims.get("name").asString());
-        System.out.println(claims.get("age").asString());
     }
 
     @Test
-    public void DecodeToken() {
-        DecodedJWT jwt = JWT.decode("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCJ9.izVguZPRsBQ5Rqw6dhMvcIwy8_9lQnrO3vpxGwPCuzs");
-        String header = jwt.getHeader();
-        String payload = jwt.getPayload();
-        String signature = jwt.getSignature();
-        System.out.println(header);
-        System.out.println(payload);
-        System.out.println(signature);
+    public void TestToken() throws UnsupportedEncodingException {
+        Map<String, Object> header = new HashMap<>();
+        String token = JWT.create()
+                .withIssuedAt(new Date())
+//                .withExpiresAt(new Date(System.currentTimeMillis() + 1))
+                .sign(Algorithm.HMAC256("secret"));
+        System.out.println(token);
+        JWTVerifier verifier = JWT.require(Algorithm.HMAC256("secret"))
+                .acceptIssuedAt(1)
+                .acceptExpiresAt(1)
+                .build();
+        DecodedJWT jwt = verifier.verify("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTQ5NzA5ODF9.hv4CDwhY7VGj73HbRP4aNBCxVnnnxUi7uudI921LVDs");
     }
 }
