@@ -3,8 +3,6 @@ package com.ymy;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.impl.PublicClaims;
-import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ymy.mapper.AdminInfoMapper;
 import com.ymy.mapper.AdminMapper;
@@ -17,7 +15,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.UnsupportedEncodingException;
-import java.util.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -50,13 +51,10 @@ public class ApplicationTests {
 
     @Test
     public void createToken() throws UnsupportedEncodingException {
-        Map<String, Object> header = new HashMap<>();
-        header.put(PublicClaims.TYPE, "JWT");
-        header.put(PublicClaims.ALGORITHM, "HS256");
         String token = JWT.create()
-                .withHeader(header)
                 .withClaim("name", "zwz")
                 .withClaim("age", "18")
+                .withIssuedAt(new Date())
                 .sign(Algorithm.HMAC256("secret"));
         System.out.println(token);
     }
@@ -65,22 +63,10 @@ public class ApplicationTests {
     public void VerifyToken() throws UnsupportedEncodingException {
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256("secret"))
                 .build();
-        DecodedJWT jwt = verifier.verify("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiend6IiwiYWdlIjoiMTgifQ.UQmqAUhUrpDVV2ST7mZKyLTomVfg7sYkEjmdDI5XF8Q");
-        Map<String, Claim> claims = jwt.getClaims();
-    }
-
-    @Test
-    public void TestToken() throws UnsupportedEncodingException {
-        Map<String, Object> header = new HashMap<>();
-        String token = JWT.create()
-                .withIssuedAt(new Date())
-//                .withExpiresAt(new Date(System.currentTimeMillis() + 1))
-                .sign(Algorithm.HMAC256("secret"));
-        System.out.println(token);
-        JWTVerifier verifier = JWT.require(Algorithm.HMAC256("secret"))
-                .acceptIssuedAt(1)
-                .acceptExpiresAt(1)
-                .build();
-        DecodedJWT jwt = verifier.verify("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTQ5NzA5ODF9.hv4CDwhY7VGj73HbRP4aNBCxVnnnxUi7uudI921LVDs");
+        DecodedJWT jwt = verifier.verify("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiend6IiwiaWF0IjoxNTE1MDUxMTUzLCJhZ2UiOiIxOCJ9.20KRztrp7OMPeg7ksjBdg2cF0cihHO06sU88aM3XzIU");
+        System.out.println(jwt.getClaims().get("name").asString());
+        System.out.println(jwt.getClaim("name").asString());
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss.sss");
+        System.out.println(format.format(jwt.getIssuedAt().getTime()));
     }
 }
