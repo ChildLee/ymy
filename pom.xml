@@ -39,12 +39,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <!--optional:设置指依赖是否可选，默认为false,即子项目默认都继承-->
-            <optional>true</optional>
-        </dependency>
         <!--生成war包时编译时需要,打包不需要-->
         <!--生成jar必须-->
         <dependency>
