@@ -1,5 +1,6 @@
 package com.ymy.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.ymy.model.Admin;
 import com.ymy.service.AdminService;
 import com.ymy.util.Result;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @Api(tags = "管理员", description = "对管理员进行增删改查修改等操作")
 @RestController
@@ -52,7 +55,11 @@ public class AdminAction {
 
     @GetMapping("selectAdminAll")
     public Result selectAdminAll() {
-        return ResultUtil.success(adminService.selectAdminAll());
+        //获取第1页，10条内容，默认查询总数count
+        PageHelper.startPage(1, 2);
+        //紧跟着的第一个select方法会被分页
+        List<Admin> list = adminService.selectAdminAll();
+        return ResultUtil.success(list);
     }
 
     @PostMapping("login")
